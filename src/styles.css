@@ -1,1 +1,531 @@
-/* You can add global styles to this file, and also import other style files */
+/* ============================================
+   💕 Valentine's Day Theme - Global Styles 💕
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Color Palette */
+  --pink-light: #FFE4EC;
+  --pink-soft: #FFB6C1;
+  --pink-medium: #FF85A2;
+  --pink-hot: #FF69B4;
+  --rose: #E91E63;
+  --red-love: #DC143C;
+  --red-deep: #C41E3A;
+  --white: #FFFFFF;
+  --cream: #FFF5F7;
+
+  /* Gradients */
+  --gradient-love: linear-gradient(135deg, #FF69B4 0%, #FF85A2 50%, #FFB6C1 100%);
+  --gradient-sunset: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-romantic: linear-gradient(135deg, #FFE4EC 0%, #FFB6C1 100%);
+  --gradient-passionate: linear-gradient(135deg, #DC143C 0%, #FF69B4 100%);
+
+  /* Typography */
+  --font-fancy: 'Pacifico', cursive;
+  --font-romantic: 'Dancing Script', cursive;
+  --font-body: 'Quicksand', sans-serif;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(255, 105, 180, 0.3);
+  --shadow-glow: 0 0 30px rgba(255, 105, 180, 0.5);
+  --shadow-button: 0 8px 25px rgba(220, 20, 60, 0.4);
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--gradient-romantic);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Angular Component Display */
+app-root,
+app-homepage,
+app-valentine,
+app-success {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+app-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* ============================================
+   Floating Hearts Background
+   ============================================ */
+.floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: float-up linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.7;
+  }
+
+  90% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(-10vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   Glassmorphism Cards
+   ============================================ */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-soft);
+  padding: 50px 60px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* ============================================
+   Typography Styles
+   ============================================ */
+.title-fancy {
+  font-family: var(--font-fancy);
+  font-size: 3.5rem;
+  color: var(--red-love);
+  text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.2);
+  margin-bottom: 10px;
+}
+
+.title-romantic {
+  font-family: var(--font-romantic);
+  font-size: 2.5rem;
+  color: var(--rose);
+  margin-bottom: 20px;
+}
+
+.text-cute {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  color: var(--pink-hot);
+  font-weight: 500;
+}
+
+/* ============================================
+   Button Styles
+   ============================================ */
+.btn {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 15px 45px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: visible;
+  min-width: 140px;
+  text-align: center;
+}
+
+/* YES Button - with continuous floating hearts on hover */
+.btn-yes {
+  background: var(--gradient-passionate);
+  color: var(--white);
+  box-shadow: var(--shadow-button);
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+
+.btn-yes:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(220, 20, 60, 0.5);
+}
+
+/* Hearts container - continuous animation */
+.btn-yes-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.heart-burst-effect {
+  position: absolute;
+  pointer-events: none;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  z-index: -1;
+  overflow: visible;
+}
+
+/* Heart particles that continuously animate from all sides */
+.heart-particle {
+  position: absolute;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Continuous heart animations from all directions on hover */
+.btn-yes-wrapper:hover .heart-particle {
+  animation: heart-float 1.5s ease-out infinite;
+}
+
+/* Position hearts around the button and set their directions */
+.btn-yes-wrapper:hover .heart-particle:nth-child(1) {
+  left: 0%;
+  top: 50%;
+  animation-delay: 0s;
+}
+
+.btn-yes-wrapper:hover .heart-particle:nth-child(2) {
+  left: 100%;
+  top: 50%;
+  animation-delay: 0.15s;
+}
+
+.btn-yes-wrapper:hover .heart-particle:nth-child(3) {
+  left: 50%;
+  top: 0%;
+  animation-delay: 0.3s;
+}
+
+.btn-yes-wrapper:hover .heart-particle:nth-child(4) {
+  left: 50%;
+  top: 100%;
+  animation-delay: 0.45s;
+}
+
+.btn-yes-wrapper:hover .heart-particle:nth-child(5) {
+  left: 20%;
+  top: 20%;
+  animation-delay: 0.6s;
+}
+
+.btn-yes-wrapper:hover .heart-particle:nth-child(6) {
+  left: 80%;
+  top: 20%;
+  animation-delay: 0.75s;
+}
+
+.btn-yes-wrapper:hover .heart-particle:nth-child(7) {
+  left: 20%;
+  top: 80%;
+  animation-delay: 0.9s;
+}
+
+.btn-yes-wrapper:hover .heart-particle:nth-child(8) {
+  left: 80%;
+  top: 80%;
+  animation-delay: 1.05s;
+}
+
+.btn-yes-wrapper:hover .heart-particle:nth-child(9) {
+  left: 10%;
+  top: 50%;
+  animation-delay: 1.2s;
+}
+
+.btn-yes-wrapper:hover .heart-particle:nth-child(10) {
+  left: 90%;
+  top: 50%;
+  animation-delay: 1.35s;
+}
+
+@keyframes heart-float {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(0);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.2) translateY(-40px) rotate(15deg);
+  }
+}
+
+/* NO Button - with tear drops filling on hover */
+.btn-no {
+  background: linear-gradient(135deg, #a8a8a8 0%, #888888 100%);
+  color: var(--white);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-no:hover {
+  background: linear-gradient(135deg, #7a7a7a 0%, #5a5a5a 100%);
+}
+
+/* Tear drops container */
+.btn-no-tears {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.btn-no:hover .btn-no-tears {
+  opacity: 1;
+}
+
+/* Individual tear drops */
+.tear-drop {
+  position: absolute;
+  width: 6px;
+  height: 10px;
+  background: linear-gradient(to bottom, rgba(100, 180, 255, 0.9), rgba(100, 180, 255, 0.4));
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity: 0;
+  animation: tear-fall 1s ease-in infinite;
+}
+
+.tear-drop:nth-child(1) {
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.tear-drop:nth-child(2) {
+  left: 30%;
+  animation-delay: 0.2s;
+}
+
+.tear-drop:nth-child(3) {
+  left: 45%;
+  animation-delay: 0.4s;
+}
+
+.tear-drop:nth-child(4) {
+  left: 60%;
+  animation-delay: 0.6s;
+}
+
+.tear-drop:nth-child(5) {
+  left: 75%;
+  animation-delay: 0.8s;
+}
+
+.tear-drop:nth-child(6) {
+  left: 22%;
+  animation-delay: 0.3s;
+}
+
+.tear-drop:nth-child(7) {
+  left: 52%;
+  animation-delay: 0.5s;
+}
+
+.tear-drop:nth-child(8) {
+  left: 68%;
+  animation-delay: 0.7s;
+}
+
+@keyframes tear-fall {
+  0% {
+    opacity: 0;
+    top: -10px;
+    transform: scale(0.8);
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  90% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 0;
+    top: 100%;
+    transform: scale(1);
+  }
+}
+
+/* Start Button */
+.btn-start {
+  background: var(--gradient-love);
+  color: var(--white);
+  box-shadow: var(--shadow-button);
+  font-size: 1.4rem;
+  padding: 18px 50px;
+}
+
+.btn-start:hover {
+  transform: scale(1.08);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ============================================
+   Image Frame Styles
+   ============================================ */
+.cute-frame {
+  background: var(--gradient-love);
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  display: inline-block;
+  position: relative;
+}
+
+.cute-frame::before {
+  content: '💕';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+}
+
+.cute-frame img {
+  border-radius: 15px;
+  max-width: 300px;
+  display: block;
+}
+
+/* ============================================
+   Confetti Animation
+   ============================================ */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  z-index: 1000;
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotateZ(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) rotateZ(720deg);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   Screen Containers
+   ============================================ */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 768px) {
+  .glass-card {
+    padding: 30px 25px;
+    margin: 20px;
+    border-radius: 25px;
+  }
+
+  .title-fancy {
+    font-size: 2.2rem;
+  }
+
+  .title-romantic {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 12px 30px;
+  }
+
+  .cute-frame img {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-card {
+    padding: 25px 20px;
+  }
+
+  .title-fancy {
+    font-size: 1.8rem;
+  }
+
+  .title-romantic {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,9 @@
+<!-- Floating Hearts Background -->
+<div class="background-container">
+    <div *ngFor="let heart of hearts" class="heart-3d" [style.left]="heart.left" [style.animation-delay]="heart.delay"
+        [style.animation-duration]="heart.duration + ', 3s'" [style.font-size]="heart.size"
+        [style.opacity]="heart.opacity" [class.layer-0]="heart.layer === 0" [class.layer-1]="heart.layer === 1"
+        [class.layer-2]="heart.layer === 2">
+        <div class="heart-shape"></div>
+    </div>
+</div>

@@ -1,0 +1,166 @@
+/* Background Component - Floating Hearts with Wiggle */
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Heart Container */
+.heart-3d {
+    position: absolute;
+    bottom: -80px;
+    animation-name: float-up, wiggle;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+}
+
+/* Depth Layers */
+.heart-3d.layer-0 {
+    z-index: 0;
+    filter: blur(2px);
+}
+
+.heart-3d.layer-1 {
+    z-index: 1;
+    filter: blur(0.5px);
+}
+
+.heart-3d.layer-2 {
+    z-index: 2;
+    filter: none;
+}
+
+/* 3D Heart Shape using CSS */
+.heart-shape {
+    position: relative;
+    width: 1em;
+    height: 0.9em;
+}
+
+.heart-shape::before,
+.heart-shape::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 0.5em;
+    height: 0.8em;
+    border-radius: 0.5em 0.5em 0 0;
+    background: linear-gradient(135deg,
+            #FF69B4 0%,
+            #FF85A2 30%,
+            #FFB6C1 50%,
+            #FF69B4 70%,
+            #DC143C 100%);
+    box-shadow:
+        inset -2px -2px 6px rgba(0, 0, 0, 0.1),
+        inset 2px 2px 6px rgba(255, 255, 255, 0.5),
+        0 2px 10px rgba(255, 105, 180, 0.25);
+}
+
+.heart-shape::before {
+    left: 0.5em;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart-shape::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+/* Float Up Animation */
+@keyframes float-up {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0.7;
+    }
+
+    90% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
+}
+
+/* Wiggle Animation */
+@keyframes wiggle {
+
+    0%,
+    100% {
+        margin-left: 0;
+    }
+
+    25% {
+        margin-left: -30px;
+    }
+
+    50% {
+        margin-left: 0;
+    }
+
+    75% {
+        margin-left: 30px;
+    }
+}
+
+/* Pulse effect for some hearts */
+.heart-3d:nth-child(5n) .heart-shape {
+    animation: heart-pulse 2s ease-in-out infinite;
+}
+
+@keyframes heart-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+/* Sparkle effect */
+.heart-3d:nth-child(7n)::after {
+    content: '✨';
+    position: absolute;
+    top: -0.4em;
+    right: -0.4em;
+    font-size: 0.35em;
+    animation: sparkle-twinkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle-twinkle {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* Glow effect for front layer */
+.heart-3d.layer-2 .heart-shape::before,
+.heart-3d.layer-2 .heart-shape::after {
+    box-shadow:
+        inset -2px -2px 6px rgba(0, 0, 0, 0.1),
+        inset 2px 2px 6px rgba(255, 255, 255, 0.5),
+        0 0 15px rgba(255, 105, 180, 0.4);
+}

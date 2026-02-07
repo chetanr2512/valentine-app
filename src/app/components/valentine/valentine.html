@@ -1,0 +1,56 @@
+<div class="screen valentine-screen">
+    <div class="glass-card valentine-content">
+        <div class="proposal-hearts">💘</div>
+        <h1 class="title-fancy proposal-title">My Baccha...</h1>
+        <h2 class="title-romantic proposal-question">Will You Be My Valentine?</h2>
+
+        <!-- Message with emoji on separate line -->
+        <div class="message-container" [class.pleading]="noClickCount > 0">
+            <p class="cute-message">{{ getMessage() }}</p>
+            <span class="message-emoji">{{ getEmoji() }}</span>
+        </div>
+
+        <!-- Couple Preview -->
+        <div class="couple-preview" *ngIf="showCouplePreview">
+            <img [src]="coupleImage" alt="Us together" class="preview-image" />
+            <span class="preview-caption">This could be us! 💑</span>
+        </div>
+
+        <div class="buttons-container" [class.centered]="yesButtonCentered">
+            <!-- Yes button with continuous hearts effect -->
+            <div class="btn-yes-wrapper">
+                <div class="heart-burst-effect">
+                    <span class="heart-particle">💕</span>
+                    <span class="heart-particle">❤️</span>
+                    <span class="heart-particle">💖</span>
+                    <span class="heart-particle">💗</span>
+                    <span class="heart-particle">💓</span>
+                    <span class="heart-particle">💘</span>
+                    <span class="heart-particle">💝</span>
+                    <span class="heart-particle">💕</span>
+                    <span class="heart-particle">❤️</span>
+                    <span class="heart-particle">💖</span>
+                </div>
+                <button class="btn btn-yes" #yesButton (click)="onYesClick()">
+                    Yes
+                </button>
+            </div>
+
+            <!-- No button with crying tears on hover -->
+            <button class="btn btn-no" #noButton [class.hidden]="noButtonHidden" (click)="onNoClick($event)">
+                <!-- Tear drops that fall on hover -->
+                <div class="btn-no-tears">
+                    <span class="tear-drop"></span>
+                    <span class="tear-drop"></span>
+                    <span class="tear-drop"></span>
+                    <span class="tear-drop"></span>
+                    <span class="tear-drop"></span>
+                    <span class="tear-drop"></span>
+                    <span class="tear-drop"></span>
+                    <span class="tear-drop"></span>
+                </div>
+                No
+            </button>
+        </div>
+    </div>
+</div>
